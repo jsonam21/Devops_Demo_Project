@@ -1,0 +1,30 @@
+# Maven
+target/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+terraform.tfvars
+
+# Kubernetes temp files
+kubeconfig
+
+# Jenkins
+jenkins_home/
+
+# Environment files
+.env
