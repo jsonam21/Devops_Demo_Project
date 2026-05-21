@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git checkout') {
+            steps {
+                git 'https://github.com/jsonam21/Devops_Demo_Project.git'
+            }
+        }
+
+        stage('Build JAR') {
+            steps {
+                sh 'cd application/springboot-app && mvn clean package'
+            }
+        }
+
+        stage('Build docker image') {
+            steps {
+                sh '''
+                docker build -t springboot-devops-app:v1 \
+                -f application/springboot-app/dockerfile \
+                application
+                '''
+            }
+        }
+
+        stage('Load image to KIND') {
+            steps {
+                sh 'kind load docker-image springboot-devops-app:v1 --name kind-dev-cluster'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'cd ..'
+                sh 'kubectl apply -f kubernetes/deployment.yaml'
+            }
+        }
+
+        
+    }
+}
