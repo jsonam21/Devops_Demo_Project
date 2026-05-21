@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = "springboot-devops-app:v1"
+        CLUSTER_NAME = "kind-dev-cluster"
+    }
+
     stages {
         stage('Git checkout') {
             steps {
@@ -17,7 +22,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 sh '''
-                docker build -t springboot-devops-app:v1 \
+                docker build -t $IMAGE_NAME \
                 -f application/springboot-app/dockerfile \
                 application
                 '''
@@ -26,7 +31,7 @@ pipeline {
 
         stage('Load image to KIND') {
             steps {
-                sh 'kind load docker-image springboot-devops-app:v1 --name kind-dev-cluster'
+                sh 'kind load docker-image $IMAGE_NAME --name $CLUSTER_NAME'
             }
         }
 
