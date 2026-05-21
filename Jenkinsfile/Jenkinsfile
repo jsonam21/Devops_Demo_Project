@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh '''
                 docker build -t $IMAGE_NAME \
-                -f application/springboot-app/dockerfile \
+                -f application/dockerfile \
                 application
                 '''
             }
