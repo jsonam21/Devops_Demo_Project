@@ -4,6 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "springboot-devops-app:v1"
         CLUSTER_NAME = "dev-cluster"
+        KUBECONFIG = "/root/.kube/config"
     }
 
     stages {
