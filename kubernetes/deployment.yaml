@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: springboot-app
-          image: springboot-devops-app:v1
+          image: springboot-devops-app:latest
           imagePullPolicy: Never
           ports:
           - containerPort: 8080

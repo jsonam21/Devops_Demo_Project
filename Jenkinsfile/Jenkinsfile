@@ -5,6 +5,7 @@ pipeline {
         IMAGE_NAME = "springboot-devops-app:v1"
         CLUSTER_NAME = "dev-cluster"
         KUBECONFIG = "/opt/kube/config"
+        BUILD_TAG = "${BUILD_NUMBER}"
     }
 
     stages {
@@ -23,7 +24,7 @@ pipeline {
         stage('Build docker image') {
             steps {
                 sh '''
-                docker build -t $IMAGE_NAME \
+                docker build -t ${IMAGE_NAME}:${BUILD_TAG} \
                 -f application/dockerfile \
                 application
                 '''
@@ -32,7 +33,7 @@ pipeline {
 
         stage('Load image to KIND') {
             steps {
-                sh 'kind load docker-image $IMAGE_NAME --name $CLUSTER_NAME'
+                sh 'kind load docker-image ${IMAGE_NAME}:${BUILD_TAG} --name $CLUSTER_NAME'
             }
         }
 
@@ -43,6 +44,35 @@ pipeline {
             }
         }
 
+        stage('Update Kubernetes Deployment') {
+            steps {
+                sh '''
+                kubectl set image deployment/springboot-app \
+                springboot-app=${IMAGE_NAME}:{BUILD_TAG} \
+                -n devops-demo
+                '''
+            }
+        }
+
+         stage('Validate Deployment') {
+            steps {
+                sh '''
+                kubectl rollout status \
+                deployment/springboot-app \
+                -n devops-demo
+                '''
+            }
+         }
         
+    }
+
+    post {
+        success {
+            echo 'Deployment successful!'
+        }
+
+        failure {
+            echo 'Pipeline failed!'
+        }
     }
 }
