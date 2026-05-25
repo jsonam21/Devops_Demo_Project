@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "springboot-devops-app:v1"
+        IMAGE_NAME = "springboot-devops-app"
         CLUSTER_NAME = "dev-cluster"
         KUBECONFIG = "/opt/kube/config"
         BUILD_TAG = "${BUILD_NUMBER}"
