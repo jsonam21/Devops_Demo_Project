@@ -48,7 +48,7 @@ pipeline {
             steps {
                 sh '''
                 kubectl set image deployment/springboot-app \
-                springboot-app=${IMAGE_NAME}:{BUILD_TAG} \
+                springboot-app=${IMAGE_NAME}:${BUILD_TAG} \
                 -n devops-demo
                 '''
             }
