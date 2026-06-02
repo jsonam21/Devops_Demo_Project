@@ -28,6 +28,19 @@ The Jenkins pipeline automatically:
 
 ---
 
+
+## Tools & Technologies
+
+- Java 17
+- Spring Boot
+- Maven
+- Docker
+- Kubernetes (kind)
+- Jenkins
+- GitHub
+- WSL2
+- Docker Desktop
+
 ## Architecture
 
 ```text
@@ -522,6 +535,19 @@ kubectl logs
 ```
 
 ---
+
+
+## Key Learnings
+
+- Configured Jenkins inside Docker container
+- Mounted Docker socket for Docker-in-Docker workflow
+- Connected Jenkins container to Kubernetes cluster using kubeconfig
+- Resolved kind networking issues inside containers
+- Troubleshot Docker Desktop and WSL2 integration
+- Implemented Kubernetes liveness and readiness probes
+- Automated deployment using Jenkins Pipeline
+- Performed Kubernetes image rollouts
+- Used kubectl port-forward for local access
 
 # Future Enhancements
 
