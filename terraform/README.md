@@ -1,5 +1,10 @@
 # Terraform Project 1 - AWS VPC and EC2 Infrastructure
 
+## Repository
+
+https://github.com/jsonam21/Devops_Demo_Project/tree/master/terraform
+
+
 ## Overview
 
 This project provisions a basic AWS infrastructure using Terraform.

@@ -409,6 +409,9 @@ kubectl rollout status deployment/springboot-app
 
 ---
 
+
+![Successful Jenkins Pipeline](image.png)
+
 # Accessing the Application
 
 The service is ClusterIP.
@@ -423,6 +426,10 @@ service/springboot-service \
 9090:80 \
 -n devops-demo
 ```
+
+![Running Application screenshot](image-1.png)
+
+![Application Health status]](image-2.png)
 
 Access:
 
