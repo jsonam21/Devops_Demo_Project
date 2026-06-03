@@ -427,9 +427,9 @@ service/springboot-service \
 -n devops-demo
 ```
 
-![Running Application screenshot](image-1.png)
+[Running Application screenshot](image-1.png)
 
-![Application Health status]](image-2.png)
+[Application Health status](image-2.png)
 
 Access:
 
